@@ -85,6 +85,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Main.h" />
+    <ClInclude Include="PathFinding.h" />
     <ClInclude Include="SmallestBoundaryPolygon.h" />
     <ClInclude Include="SmallestBoundaryPolygonSolver.h" />
     <ClInclude Include="stdafx.h" />
@@ -92,6 +93,7 @@
     <ClInclude Include="TravellingSalesman.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PathFinding.cpp" />
     <ClCompile Include="SmallestBoundaryPolygon.cpp" />
     <ClCompile Include="SmallestBoundaryPolygonSolver.cpp" />
     <ClCompile Include="stdafx.cpp">

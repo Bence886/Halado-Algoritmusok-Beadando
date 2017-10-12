@@ -1,8 +1,14 @@
-﻿  Main.cpp
+﻿  stdafx.cpp
+  SmallestBoundaryPolygon.cpp
+  SmallestBoundaryPolygonSolver.cpp
+SmallestBoundaryPolygonSolver.cpp(42): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+SmallestBoundaryPolygonSolver.cpp(43): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Main.cpp
+  TravellingSalesman.cpp
   Generating code
-  2 of 262 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    8 functions had inline decision re-evaluated but remain unchanged
+  259 of 262 functions (98.9%) were compiled, the rest were copied from previous compilation.
+    3 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Optimization.vcxproj -> C:\Users\hallgató\Downloads\AdvAlg-Stud\\Bin\Release\Optimization.exe
-  Optimization.vcxproj -> C:\Users\hallgató\Downloads\AdvAlg-Stud\\Bin\Release\Optimization.pdb (Full PDB)
+  Optimization.vcxproj -> C:\Users\hallgató\Downloads\halal\AdvAlg-Stud\\Bin\Release\Optimization.exe
+  Optimization.vcxproj -> C:\Users\hallgató\Downloads\halal\AdvAlg-Stud\\Bin\Release\Optimization.pdb (Full PDB)

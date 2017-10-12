@@ -45,6 +45,9 @@
     <ClInclude Include="SmallestBoundaryPolygonSolver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PathFinding.h">
+      <Filter>Header Files\Problems</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -61,6 +64,9 @@
     </ClCompile>
     <ClCompile Include="SmallestBoundaryPolygonSolver.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PathFinding.cpp">
+      <Filter>Source Files\Problems</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
