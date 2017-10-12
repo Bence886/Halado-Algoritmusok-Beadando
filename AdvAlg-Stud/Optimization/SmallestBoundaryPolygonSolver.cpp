@@ -18,7 +18,7 @@ SmallestBoundaryPolygonSolver::~SmallestBoundaryPolygonSolver()
 void SmallestBoundaryPolygonSolver::PlaceClimbers(int num)
 {
 	float x = 0, y = 0;
-	for each (Point var in points)
+	for(Point var : points)
 	{
 		x += var.x;
 		y += var.y;
@@ -28,7 +28,7 @@ void SmallestBoundaryPolygonSolver::PlaceClimbers(int num)
 	Point mid{ x / size , y / size };
 
 	x = 0;
-	for each (Point var in points)
+	for(Point var : points)
 	{
 		y = std::sqrt((mid.x - var.x)*(mid.x - var.x) + (mid.y - var.y)*(mid.y - var.y));
 		if (y > x)
