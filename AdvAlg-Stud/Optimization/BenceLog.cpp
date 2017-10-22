@@ -1,0 +1,19 @@
+#include "stdafx.h"
+#include "BenceLog.h"
+
+
+
+void BenceLog::Add_C_point(Point p)
+{
+	c_points << p.x << '\t' << p.y << endl;
+}
+
+void BenceLog::Add_Point(Point p)
+{
+	Points << p.x << '\t' << p.y << endl;
+}
+
+void BenceLog::Add_Solution(int iter, int id, Point p, float length)
+{
+	Solution << iter << '\t' << id << '\t' << p.x << '\t' << p.y << '\t' << length << endl;
+}

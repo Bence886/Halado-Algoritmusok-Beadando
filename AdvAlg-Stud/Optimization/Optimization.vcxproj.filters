@@ -48,6 +48,9 @@
     <ClInclude Include="PathFinding.h">
       <Filter>Header Files\Problems</Filter>
     </ClInclude>
+    <ClInclude Include="BenceLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -67,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="PathFinding.cpp">
       <Filter>Source Files\Problems</Filter>
+    </ClCompile>
+    <ClCompile Include="BenceLog.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

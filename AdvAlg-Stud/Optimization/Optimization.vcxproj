@@ -58,6 +58,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AssemblerOutput>NoListing</AssemblerOutput>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -84,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BenceLog.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="PathFinding.h" />
     <ClInclude Include="SmallestBoundaryPolygon.h" />
@@ -93,6 +95,7 @@
     <ClInclude Include="TravellingSalesman.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BenceLog.cpp" />
     <ClCompile Include="PathFinding.cpp" />
     <ClCompile Include="SmallestBoundaryPolygon.cpp" />
     <ClCompile Include="SmallestBoundaryPolygonSolver.cpp" />

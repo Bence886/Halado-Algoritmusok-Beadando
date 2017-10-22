@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include "../Utils/Animlog.h"
 
 const float PI = 3.14159265358979f;
 

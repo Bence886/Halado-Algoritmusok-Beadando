@@ -1,13 +1,3 @@
-﻿  stdafx.cpp
-  TravellingSalesman.cpp
-  Main.cpp
-  SmallestBoundaryPolygonSolver.cpp
-c:\users\hallgató\downloads\halal\advalg-stud\optimization\smallestboundarypolygonsolver.cpp(43): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\hallgató\downloads\halal\advalg-stud\optimization\smallestboundarypolygonsolver.cpp(44): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\hallgató\downloads\halal\advalg-stud\optimization\smallestboundarypolygonsolver.cpp(74): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\hallgató\downloads\halal\advalg-stud\optimization\smallestboundarypolygonsolver.cpp(75): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  SmallestBoundaryPolygon.cpp
-  PathFinding.cpp
-  Generating Code...
-  Optimization.vcxproj -> C:\Users\hallgató\Downloads\halal\AdvAlg-Stud\\Bin\Debug\Optimization.exe
-  Optimization.vcxproj -> C:\Users\hallgató\Downloads\halal\AdvAlg-Stud\\Bin\Debug\Optimization.pdb (Full PDB)
+﻿  Main.cpp
+  Optimization.vcxproj -> D:\Projects\C++\halal\AdvAlg-Stud\\Bin\Debug\Optimization.exe
+  Optimization.vcxproj -> D:\Projects\C++\halal\AdvAlg-Stud\\Bin\Debug\Optimization.pdb (Full PDB)
