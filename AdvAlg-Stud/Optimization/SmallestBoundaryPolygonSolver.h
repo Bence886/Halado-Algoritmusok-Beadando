@@ -17,5 +17,6 @@ public:
 	void CilmbHill(int num, int iter);
 private:
 	void NewPoint(float*, float*, int);
+	bool pointsInBoundary(int j);
 	std::vector<Point> ToPointVector(std::vector<Point*> points);
 };

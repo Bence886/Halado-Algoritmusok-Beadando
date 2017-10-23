@@ -13,7 +13,7 @@ void SmallestBoundaryPolygon_HillClimbingStochastic() {
 	SmallestBoundaryPolygonSolver problem;
 	problem.loadPointsFromFile("Input\\Points.txt");
 	std::cout << "Init Climbers" << std::endl;
-	problem.CilmbHill(10, 1000);
+	problem.CilmbHill(10, 300);
 	//HillClimbingStochastic hcs(problem, 5.0f, 0.0001f, 1000);
 	//hcs.optimize();
 }
