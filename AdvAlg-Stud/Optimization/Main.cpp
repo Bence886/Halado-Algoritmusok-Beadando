@@ -20,7 +20,7 @@ void TravellingSalesman_Genetic()
 {
 	TravellingSalesmanSolver problem(100, 64);
 	problem.loadTownsFromFile("Input\\Towns.txt");
-	problem.Travel(1000);
+	problem.Travel(100);
 }
 
 int main()

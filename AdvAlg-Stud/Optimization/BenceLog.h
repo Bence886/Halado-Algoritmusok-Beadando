@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "TravellingSalesman.h"
 
 using namespace std;
 
@@ -29,4 +30,8 @@ public:
 	void Add_C_point(Point p);
 	void Add_Point(Point p);
 	void Add_Solution(int iter, int id, Point p, float length);
+
+	void Add_C_point(Town p);
+	void Add_Point(Town p);
+	void Add_Solution(int iter, int id, Town p, float length);
 };

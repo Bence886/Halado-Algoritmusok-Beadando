@@ -5,6 +5,8 @@
 #include "TravellingSalesmanSolver.h"
 #include "../Utils/Random.h"
 
+#define TEN 10
+
 TravellingSalesmanSolver::TravellingSalesmanSolver(int population, int towns) : agents(population, std::vector<Town>(towns))
 {
 }
@@ -15,14 +17,25 @@ TravellingSalesmanSolver::~TravellingSalesmanSolver()
 
 void TravellingSalesmanSolver::Travel(int iter)
 {
+
+	for (int i = 0; i < towns.size(); i++)
+	{
+		log.Add_C_point(towns[i]);
+	}
+
 	float * fitnesses = new float[agents.size()];
 	InitPopulation();
 	for (int i = 0; i < iter; i++)
 	{
 		CalcFitnesses(fitnesses);
 		std::vector< std::vector<Town> > newAgents(agents.size(), std::vector<Town>(towns.size()));
-		Mate(10, &newAgents);
+		SelectTopN(TEN, &newAgents, fitnesses);
+		Mate(TEN, &newAgents);
 		agents = newAgents;
+		for (int j = 0; j < towns.size(); j++)
+		{
+			log.Add_Solution(i, j, agents[0][j], fitnesses[0]);
+		}
 	}
 
 	delete(fitnesses);
@@ -51,7 +64,49 @@ float TravellingSalesmanSolver::Fitness(std::vector<Town> agent)
 
 void TravellingSalesmanSolver::Mate(int from,std::vector< std::vector<Town> > *newAgents)
 {
+	for (int i = from; i < agents.size(); i++)
+	{
+		Cross(&(*newAgents)[randomUniform(0, from-2)], &(*newAgents)[randomUniform(0, from - 2)]);
+	}
+}
 
+void TravellingSalesmanSolver::SelectTopN(int from, std::vector<std::vector<Town>>* newAgents, float* fitnesses)
+{
+	int * topfitness = new int[from];
+	for (int i = 0; i < from; i++)
+	{
+		int j = 0;
+		topfitness[i] = 0;
+		while (j < (*newAgents).size()-1)
+		{
+			if (fitnesses[topfitness[i]] > fitnesses[j] && fitnesses[j] != -1)
+			{
+				topfitness[i] = j;
+			}
+			j++;
+		}
+		//std::cout << i << " " << topfitness[i] << " " << fitnesses[topfitness[i]] << std::endl;
+		fitnesses[topfitness[i]] = -1;
+	}
+
+	for (int i = 0; i < from; i++)
+	{
+		(*newAgents)[i] = agents[topfitness[i]];
+	}
+	delete(topfitness);
+}
+
+void TravellingSalesmanSolver::Cross(std::vector<Town> *a, std::vector<Town>* b)
+{
+	int size = towns.size();
+	int random = randomUniform(0, size-TEN);
+	int random2 = randomUniform(0, TEN);
+	for (int i = random; i < (random+random2); i++)
+	{
+		Town temp = (*a)[i];
+		(*a)[i] = (*b)[i];
+		(*b)[i] = temp;
+	}
 }
 
 void TravellingSalesmanSolver::InitPopulation()
