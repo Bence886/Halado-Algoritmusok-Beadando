@@ -20,7 +20,6 @@ void SmallestBoundaryPolygon_HillClimbingStochastic() {
 
 int main()
 {
-	setlocale(LC_NUMERIC, "French_Canada.1252");
 	SmallestBoundaryPolygon_HillClimbingStochastic();
 
 	std::getchar();

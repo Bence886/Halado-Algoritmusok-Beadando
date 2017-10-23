@@ -5,7 +5,7 @@
 #include "../Utils/Random.h"
 
 
-std::vector<Point*> climbers;
+std::vector<Point> climbers;
 
 SmallestBoundaryPolygonSolver::SmallestBoundaryPolygonSolver()
 {
@@ -53,7 +53,7 @@ void SmallestBoundaryPolygonSolver::PlaceClimbers(int num)
 		pnt->x = newX;
 		pnt->y = newY;
 
-		climbers.push_back(pnt);
+		climbers.push_back(*pnt);
 		log.Add_C_point(*pnt);
 		cout << "Point: " << i << " X: " << pnt->x << " Y: " << pnt->y << endl;
 	}
@@ -66,28 +66,26 @@ void SmallestBoundaryPolygonSolver::CilmbHill(int num, int iter)
 	std::vector<Point> newPoints;
 	while (i++ < iter)
 	{
-		float length = lengthOfBoundary(ToPointVector(climbers));
+		float length = lengthOfBoundary(climbers);
 		int j = 0;
-		for (Point* var : climbers)
+		for (Point var : climbers)
 		{
-			Point* oldPoint = var;
-			*var = *NewPoint(*var, 10);
-			if (length < lengthOfBoundary(ToPointVector(climbers)))
+			Point oldPoint = var;
+			//var = NewPoint(&var.x, &var.y, 10);
+			if (length < lengthOfBoundary(climbers))
 			{
 				var = oldPoint;
 			}
-			log.Add_Solution(i, j++, *var, length);
+			log.Add_Solution(i, j++, var, length);
 		}
 	}
 	std::cout << std::endl;
 }
 
-Point* SmallestBoundaryPolygonSolver::NewPoint(Point var, int range)
+void SmallestBoundaryPolygonSolver::NewPoint(float *x, float *y, int range)
 {
-	Point* returnPoint = new Point();
-	returnPoint->x = var.x + randomUniform(-range, range);
-	returnPoint->y = var.y + randomUniform(-range, range);
-	return returnPoint;
+	x += randomUniform(-range, range);
+	y += randomUniform(-range, range);
 }
 
 std::vector<Point> SmallestBoundaryPolygonSolver::ToPointVector(std::vector<Point*> points)

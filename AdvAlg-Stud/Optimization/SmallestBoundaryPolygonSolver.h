@@ -16,6 +16,6 @@ public:
 	void PlaceClimbers(int num);
 	void CilmbHill(int num, int iter);
 private:
-	Point* NewPoint(Point var, int range);
+	void NewPoint(float*, float*, int);
 	std::vector<Point> ToPointVector(std::vector<Point*> points);
 };
