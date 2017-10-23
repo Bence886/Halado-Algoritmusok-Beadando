@@ -8,19 +8,25 @@
 #include "SmallestBoundaryPolygon.h"
 #include "Main.h"
 #include "SmallestBoundaryPolygonSolver.h"
+#include "TravellingSalesmanSolver.h"
 
 void SmallestBoundaryPolygon_HillClimbingStochastic() {
 	SmallestBoundaryPolygonSolver problem;
 	problem.loadPointsFromFile("Input\\Points.txt");
-	std::cout << "Init Climbers" << std::endl;
 	problem.CilmbHill(10, 300);
-	//HillClimbingStochastic hcs(problem, 5.0f, 0.0001f, 1000);
-	//hcs.optimize();
+}
+
+void TravellingSalesman_Genetic()
+{
+	TravellingSalesmanSolver problem(100, 64);
+	problem.loadTownsFromFile("Input\\Towns.txt");
+	problem.Travel(1000);
 }
 
 int main()
 {
-	SmallestBoundaryPolygon_HillClimbingStochastic();
+	//SmallestBoundaryPolygon_HillClimbingStochastic();
+	TravellingSalesman_Genetic();
 
 	std::getchar();
     return 0;
