@@ -5,8 +5,12 @@
 class Town
 {
 public:
+	Town(int id) :id(id)
+	{}
+	Town();
 	float x;
 	float y;
+	int id;
 };
 
 class TravellingSalesmanProblem

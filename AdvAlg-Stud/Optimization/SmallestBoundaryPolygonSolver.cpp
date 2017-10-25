@@ -100,13 +100,3 @@ void SmallestBoundaryPolygonSolver::NewPoint(float *x, float *y, int range)
 	*x += randomUniform(-range, range);
 	*y += randomUniform(-range, range);
 }
-
-std::vector<Point> SmallestBoundaryPolygonSolver::ToPointVector(std::vector<Point*> points)
-{
-	std::vector<Point> a;
-	for (Point* var : points)
-	{
-		a.push_back(*var);
-	}
-	return a;
-}

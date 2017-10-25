@@ -13,7 +13,7 @@
 void SmallestBoundaryPolygon_HillClimbingStochastic() {
 	SmallestBoundaryPolygonSolver problem;
 	problem.loadPointsFromFile("Input\\Points.txt");
-	problem.CilmbHill(10, 300);
+	problem.CilmbHill(3, 300);
 }
 
 void TravellingSalesman_Genetic()
@@ -28,6 +28,7 @@ int main()
 	//SmallestBoundaryPolygon_HillClimbingStochastic();
 	TravellingSalesman_Genetic();
 
+	std::cout << "Done!" << std::endl;
 	std::getchar();
     return 0;
 }

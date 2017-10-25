@@ -28,7 +28,12 @@ void BenceLog::Add_Point(Town p)
 	Points << p.x << '\t' << p.y << endl;
 }
 
-void BenceLog::Add_Solution(int iter, int id, Town p, float length)
+void BenceLog::AddIteration(int distance, int iteration)
 {
-	Solution << iter << '\t' << id << '\t' << p.x << '\t' << p.y << '\t' << length << endl;
+	Solution << "#" << distance << "#" << iteration << endl;
+}
+
+void BenceLog::Add_Solution(Town p)
+{
+	Solution << p.id << '\t' << p.x << '\t' << p.y << '\t' << endl;
 }

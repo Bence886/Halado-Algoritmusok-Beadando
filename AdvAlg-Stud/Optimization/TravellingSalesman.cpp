@@ -25,8 +25,9 @@ float TravellingSalesmanProblem::objective(vector<Town> route) {
 
 void TravellingSalesmanProblem::loadTownsFromFile(string fileName) {
 	ifstream ftowns(fileName);
+	int i = 0;
 	while (!ftowns.eof()) {
-		Town town;
+		Town town(i++);
 		ftowns >> town.x;
 		ftowns >> town.y;
 		towns.push_back(town);
@@ -51,3 +52,6 @@ void TravellingSalesmanProblem::printOutTowns(vector<Town> townVector) {
 	}
 }
 
+Town::Town()
+{
+}

@@ -8,12 +8,10 @@
 #define TEN 10
 
 TravellingSalesmanSolver::TravellingSalesmanSolver(int population, int towns) : agents(population, std::vector<Town>(towns))
-{
-}
+{}
 
 TravellingSalesmanSolver::~TravellingSalesmanSolver()
-{
-}
+{}
 
 void TravellingSalesmanSolver::Travel(int iter)
 {
@@ -27,15 +25,22 @@ void TravellingSalesmanSolver::Travel(int iter)
 	InitPopulation();
 	for (int i = 0; i < iter; i++)
 	{
+		log.AddIteration(Fitness(agents[0]), i);
+		for (int k = 0; k < towns.size(); k++)
+		{
+			log.Add_Solution(agents[0][k]);
+		}
+
 		CalcFitnesses(fitnesses);
 		std::vector< std::vector<Town> > newAgents(agents.size(), std::vector<Town>(towns.size()));
 		SelectTopN(TEN, &newAgents, fitnesses);
 		Mate(TEN, &newAgents);
-		agents = newAgents;
-		for (int j = 0; j < towns.size(); j++)
+		for (int k = 0; k < agents.size()-TEN; k++)
 		{
-			log.Add_Solution(i, j, agents[0][j], fitnesses[0]);
+			Mutate(&newAgents[randomUniform(TEN, agents.size()-1)]);
 		}
+		agents = newAgents;
+		std::cout << "iteration: " << i << std::endl;
 	}
 
 	delete(fitnesses);
@@ -52,21 +57,21 @@ void TravellingSalesmanSolver::CalcFitnesses(float * fitnesses)
 
 float TravellingSalesmanSolver::Fitness(std::vector<Town> agent)
 {
-	float f=0.0f;
+	float f = 0.0f;
 
-	for (int  i = 0; i < agent.size()-1; i++)
+	for (int i = 0; i < agent.size() - 1; i++)
 	{
-		f += std::sqrt((agent[i].x - agent[i+1].x)*(agent[i].x - agent[i + 1].x)+(agent[i].y - agent[i + 1].y)*(agent[i].y - agent[i + 1].y));
+		f += std::sqrt((agent[i].x - agent[i + 1].x)*(agent[i].x - agent[i + 1].x) + (agent[i].y - agent[i + 1].y)*(agent[i].y - agent[i + 1].y));
 	}
 
 	return f;
 }
 
-void TravellingSalesmanSolver::Mate(int from,std::vector< std::vector<Town> > *newAgents)
+void TravellingSalesmanSolver::Mate(int from, std::vector< std::vector<Town> > *newAgents)
 {
-	for (int i = from; i < agents.size(); i++)
+	for (int i = from; i < agents.size(); i+=2)
 	{
-		Cross(&(*newAgents)[randomUniform(0, from-2)], &(*newAgents)[randomUniform(0, from - 2)]);
+		Cross((*newAgents)[randomUniform(0, from - 2)], (*newAgents)[randomUniform(0, from - 2)], &(*newAgents)[i], &(*newAgents)[i+1]);
 	}
 }
 
@@ -77,7 +82,7 @@ void TravellingSalesmanSolver::SelectTopN(int from, std::vector<std::vector<Town
 	{
 		int j = 0;
 		topfitness[i] = 0;
-		while (j < (*newAgents).size()-1)
+		while (j < (*newAgents).size() - 1)
 		{
 			if (fitnesses[topfitness[i]] > fitnesses[j] && fitnesses[j] != -1)
 			{
@@ -96,17 +101,19 @@ void TravellingSalesmanSolver::SelectTopN(int from, std::vector<std::vector<Town
 	delete(topfitness);
 }
 
-void TravellingSalesmanSolver::Cross(std::vector<Town> *a, std::vector<Town>* b)
+void TravellingSalesmanSolver::Cross(std::vector<Town> a, std::vector<Town> b, std::vector<Town> *out, std::vector<Town> *out2)
 {
 	int size = towns.size();
-	int random = randomUniform(0, size-TEN);
+	int random = randomUniform(0, size - TEN);
 	int random2 = randomUniform(0, TEN);
-	for (int i = random; i < (random+random2); i++)
+	for (int i = random; i < (random + random2); i++)
 	{
-		Town temp = (*a)[i];
-		(*a)[i] = (*b)[i];
-		(*b)[i] = temp;
+		Town temp = a[i];
+		a[i] = b[i];
+		b[i] = temp;
 	}
+	(*out) = a;
+	(*out2) = b;
 }
 
 void TravellingSalesmanSolver::InitPopulation()
@@ -119,6 +126,21 @@ void TravellingSalesmanSolver::InitPopulation()
 		{
 			agents[i][j] = GetRandomTown(agents[i]);
 			//std::cout << i << " " << j << " X:" << agents[i][j].x << " Y: " << agents[i][j].y << std::endl;
+		}
+	}
+}
+
+void TravellingSalesmanSolver::Mutate(std::vector<Town> *a)
+{
+	for (int i = 0; i < (*a).size(); i++)
+	{
+		for (int j = 0; j < (*a).size()-1; j++)
+		{
+			int r1 = randomUniform(j, (*a).size()-2);
+			int r2 = randomUniform(j, (*a).size()-2);
+			Town temp = (*a)[r1];
+			(*a)[r1] = (*a)[r2];
+			(*a)[r2] = temp;
 		}
 	}
 }
@@ -147,5 +169,5 @@ bool TravellingSalesmanSolver::ContainsTown(Town newTown, std::vector<Town> agen
 
 Town TravellingSalesmanSolver::RandomTown()
 {
-	return towns[randomUniform(0, towns.size()-1)];
+	return towns[randomUniform(0, towns.size() - 1)];
 }

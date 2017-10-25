@@ -16,9 +16,11 @@ public:
 	ofstream Solution;
 	
 	BenceLog() :
-		c_points("c_points.txt"),
+		//c_points("c_points.txt"),
 		Points("Points.txt"),
-		Solution("Solution.txt")
+		//Solution("Solution.txt"),
+		c_points("Towns.txt"),
+		Solution("Towns_solution.txt")
 	{};
 	~BenceLog()
 	{
@@ -33,5 +35,6 @@ public:
 
 	void Add_C_point(Town p);
 	void Add_Point(Town p);
-	void Add_Solution(int iter, int id, Town p, float length);
+	void AddIteration(int distance, int iteration);
+	void Add_Solution(Town p);
 };
