@@ -35,9 +35,9 @@ void TravellingSalesmanSolver::Travel(int iter)
 		std::vector< std::vector<Town> > newAgents(agents.size(), std::vector<Town>(towns.size()));
 		SelectTopN(TEN, &newAgents, fitnesses);
 		Mate(TEN, &newAgents);
-		for (int k = 0; k < agents.size()-TEN; k++)
+		for (int k = 0; k < agents.size() - TEN; k++)
 		{
-			Mutate(&newAgents[randomUniform(TEN, agents.size()-1)]);
+			Mutate(&newAgents[randomUniform(TEN, agents.size() - 1)]);
 		}
 		agents = newAgents;
 		std::cout << "iteration: " << i << std::endl;
@@ -69,9 +69,9 @@ float TravellingSalesmanSolver::Fitness(std::vector<Town> agent)
 
 void TravellingSalesmanSolver::Mate(int from, std::vector< std::vector<Town> > *newAgents)
 {
-	for (int i = from; i < agents.size(); i+=2)
+	for (int i = from; i < agents.size(); i += 2)
 	{
-		Cross((*newAgents)[randomUniform(0, from - 2)], (*newAgents)[randomUniform(0, from - 2)], &(*newAgents)[i], &(*newAgents)[i+1]);
+		Cross((*newAgents)[randomUniform(0, from - 2)], (*newAgents)[randomUniform(0, from - 2)], &(*newAgents)[i]);
 	}
 }
 
@@ -101,19 +101,23 @@ void TravellingSalesmanSolver::SelectTopN(int from, std::vector<std::vector<Town
 	delete(topfitness);
 }
 
-void TravellingSalesmanSolver::Cross(std::vector<Town> a, std::vector<Town> b, std::vector<Town> *out, std::vector<Town> *out2)
+void TravellingSalesmanSolver::Cross(std::vector<Town> a, std::vector<Town> b, std::vector<Town> *out)
 {
 	int size = towns.size();
 	int random = randomUniform(0, size - TEN);
 	int random2 = randomUniform(0, TEN);
+	int j = 0;
 	for (int i = random; i < (random + random2); i++)
 	{
-		Town temp = a[i];
-		a[i] = b[i];
-		b[i] = temp;
+		(*out)[j++] = a[i];
 	}
-	(*out) = a;
-	(*out2) = b;
+	for (int i = 0; i < size; i++)
+	{
+		if (!ContainsTown(b[i], *out))
+		{
+			(*out)[j++] = b[i];
+		}
+	}
 }
 
 void TravellingSalesmanSolver::InitPopulation()
@@ -134,10 +138,10 @@ void TravellingSalesmanSolver::Mutate(std::vector<Town> *a)
 {
 	for (int i = 0; i < (*a).size(); i++)
 	{
-		for (int j = 0; j < (*a).size()-1; j++)
+		for (int j = 0; j < (*a).size() - 1; j++)
 		{
-			int r1 = randomUniform(j, (*a).size()-2);
-			int r2 = randomUniform(j, (*a).size()-2);
+			int r1 = randomUniform(j, (*a).size() - 2);
+			int r2 = randomUniform(j, (*a).size() - 2);
 			Town temp = (*a)[r1];
 			(*a)[r1] = (*a)[r2];
 			(*a)[r2] = temp;
