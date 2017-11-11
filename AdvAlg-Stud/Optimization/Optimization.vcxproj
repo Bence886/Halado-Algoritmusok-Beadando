@@ -87,6 +87,7 @@
   <ItemGroup>
     <ClInclude Include="BenceLog.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="PathFinderSolver.h" />
     <ClInclude Include="PathFinding.h" />
     <ClInclude Include="SmallestBoundaryPolygon.h" />
     <ClInclude Include="SmallestBoundaryPolygonSolver.h" />
@@ -97,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BenceLog.cpp" />
+    <ClCompile Include="PathFinderSolver.cpp" />
     <ClCompile Include="PathFinding.cpp" />
     <ClCompile Include="SmallestBoundaryPolygon.cpp" />
     <ClCompile Include="SmallestBoundaryPolygonSolver.cpp" />

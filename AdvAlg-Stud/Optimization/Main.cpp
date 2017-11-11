@@ -9,6 +9,7 @@
 #include "Main.h"
 #include "SmallestBoundaryPolygonSolver.h"
 #include "TravellingSalesmanSolver.h"
+#include "PathFinderSolver.h"
 
 void SmallestBoundaryPolygon_HillClimbingStochastic() {
 	SmallestBoundaryPolygonSolver problem;
@@ -23,10 +24,19 @@ void TravellingSalesman_Genetic()
 	problem.Travel(100);
 }
 
+void path_finder_generic()
+{
+	PathFinderSolver path_finder(100, 10);
+	path_finder.loadMapFromFile("Input\\Map.txt");
+	path_finder.find_path(50);
+}
+
 int main()
 {
 	//SmallestBoundaryPolygon_HillClimbingStochastic();
-	TravellingSalesman_Genetic();
+	//TravellingSalesman_Genetic();
+
+	path_finder_generic();
 
 	std::cout << "Done!" << std::endl;
 	std::getchar();
