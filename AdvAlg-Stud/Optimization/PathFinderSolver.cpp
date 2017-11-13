@@ -16,7 +16,7 @@ void PathFinderSolver::find_path(int iters)
 	for (int k = 0; k < iters; k++)
 	{
 		sort();
-		mate(10);
+		mate(10, 50);
 		mutate();
 		std::cout << k << " " << objective(m_my_machine_code[0]) << std::endl;
 	}
@@ -51,19 +51,19 @@ void PathFinderSolver::sort()
 	}
 }
 
-void PathFinderSolver::mate(int from)
+void PathFinderSolver::mate(int from, int maxNum)
 {
 	int random1;
 	int random2;
 	for (int i = from; i < m_my_machine_code.size() / 2; i++)
 	{
-		random1 = randomUniform(0, m_my_machine_code.size()-1);
-		random2 = randomUniform(0, from);
+		random1 = randomUniform(0, m_my_machine_code.size() - maxNum);
+		random2 = randomUniform(0, maxNum);
 		for (int j = random1; j < m_my_machine_code[i].size(); j++)
 		{
 			m_my_machine_code[i][j] = m_my_machine_code[random2][j];
 		}
-		random2 = randomUniform(0, from);
+		random2 = randomUniform(0, maxNum);
 		int k = 0;
 		for (int j = 0; j < m_my_machine_code[i].size(); j++)
 		{
@@ -89,13 +89,13 @@ bool PathFinderSolver::contains(std::vector<int> heads, int gene)
 
 void PathFinderSolver::mutate()
 {
-	for (int i = 10; i < m_my_machine_code.size(); i++)
+	for (int i = 50; i < m_my_machine_code.size(); i++)
 	{
 		int random1;
 		for (int j = 0; j < 5; j++)
 		{
 			random1 = randomUniform(0, m_my_machine_code[i].size()-1);
-			m_my_machine_code[i][random1] = randomUniform(1, max_instruction_code - 1);
+			m_my_machine_code[i][random1] = randomUniform(0, max_instruction_code - 1);
 		}
 	}
 }

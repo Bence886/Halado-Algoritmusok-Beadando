@@ -13,7 +13,7 @@ public:
 private:
 	void generate_init_population();
 	void sort();
-	void mate(int from);
+	void mate(int from, int maxNum);
 	bool contains(std::vector<int> heads, int gene);
 	void mutate();
 };
